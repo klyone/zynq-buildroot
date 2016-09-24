@@ -16,7 +16,6 @@ if [ ! -d buildroot ] ; then
 	rm ${BUILDROOT}.tar.gz > /dev/null
 	mv ${BUILDROOT} buildroot > /dev/null
 	echo "Updating Buildroot configuration..."
-	cp configs/buildroot/zybo.config buildroot/.config
 	cp configs/buildroot/zybo.config buildroot/configs/zynq_zybo_defconfig
 else
 	echo "Omitting Buildroot download and configuration..."
@@ -24,6 +23,7 @@ fi
 
 echo "Compiling Buildroot..."
 cd buildroot
+make zynq_zybo_defconfig
 make
 cd ..
 
